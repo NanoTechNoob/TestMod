@@ -1,1 +1,1 @@
-Test Mod is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+Test Mod is a pretty cool mod, it does a bunch of random stuff at the moment.
