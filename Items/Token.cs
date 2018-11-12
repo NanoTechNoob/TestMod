@@ -27,16 +27,23 @@ using Terraria.ModLoader;
 
             public override bool CanUseItem(Player player)
             {
-                return !NPC.AnyNPCs(mod.NPCType("DoomNut"));
-                return !Main.dayTime;
+                if(!Main.dayTime)
+                {
+                    return !NPC.AnyNPCs(mod.NPCType("DoomNut"));
+                }
+                return false;
             }
 
             public override bool UseItem(Player player)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("DoomNut"));
-                Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
+                if(!Main.dayTime)
+                {
+                    NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("DoomNut"));
+                    Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
 
-                return true;
+                    return true;
+                }
+                return false;
             }
         }
     }
