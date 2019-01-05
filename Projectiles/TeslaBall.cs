@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace TestMod.Projectiles
 {
-    public class ProNut : ModProjectile
+    public class TeslaBall: ModProjectile
     {
         public override void SetDefaults()
         {
@@ -27,7 +27,7 @@ namespace TestMod.Projectiles
         {
             if (projectile.localAI[0] == 0f)
             {
-                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 20);
+                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 12);
                 projectile.localAI[0] = 1f;
             }
         }

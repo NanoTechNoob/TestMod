@@ -33,7 +33,7 @@ namespace TestMod.NPCs.Boss
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.buffImmune[24] = true;
-            music = MusicID.Boss2;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DoomNut");
             npc.netAlways = true;
         }
         
@@ -43,7 +43,6 @@ namespace TestMod.NPCs.Boss
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            //npc.lifeMax = (int)(npc.lifeMax * 0.579f * bossLifeScale);  //boss life scale in expertmode
             npc.damage = (int)(npc.damage * 0.6f);  //boss damage increase in expermode
         }
         public override void AI()
@@ -69,12 +68,30 @@ namespace TestMod.NPCs.Boss
                     int damage = 10;  //projectile damage
                     int type = mod.ProjectileType("ProNut");  //put your projectile
                     float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
-                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
-                    int num55 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 25) * Speed) * -1), (float)((Math.Sin(rotation + 25) * Speed) * -1), type, damage, 0f, 0);
-                    int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0f, 0);
-                    int num57 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -25) * Speed) * -1), (float)((Math.Sin(rotation - 25) * Speed) * -1), type, damage, 0f, 0);
-                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0f, 0);
+                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0, 0);
+                    int num55 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 25) * Speed) * -1), (float)((Math.Sin(rotation + 25) * Speed) * -1), type, damage, 0, 0);
+                    int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0, 0);
+                    int num57 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -25) * Speed) * -1), (float)((Math.Sin(rotation - 25) * Speed) * -1), type, damage, 0, 0);
+                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0, 0);
                     npc.ai[1] = 0;
+
+                    /*if(npc.life <= npc.lifeMax - (npc.lifeMax / 4))
+                    {
+                        float Speed3 = 1f;
+                        int damage3 = 25;
+                        int type3 = mod.ProjectileType("ProNut3");
+                        int num59 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed3) * -1), (float)((Math.Sin(rotation) * Speed3) * -1), type3, damage3, 0, 0);
+                    }
+                    */
+                }
+                else if(npc.ai[1] == 30 || npc.ai[1] == 60 || npc.ai[1] == 90 || npc.ai[1] == 120)
+                {
+                    float Speed3 = 3f;
+                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+                    int damage3 = 10;
+                    int type3 = mod.ProjectileType("ProNut3");
+                    float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f))); 
+                    int num59 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed3) * -1), (float)((Math.Sin(rotation) * Speed3) * -1), type3, damage3, 0, 0);
                 }
             }
             else if(npc.life <= npc.lifeMax / 2)
@@ -93,21 +110,43 @@ namespace TestMod.NPCs.Boss
                 npc.ai[1]++;
                 if (npc.ai[1] >= 45)  //projectile fire rate
                 {
-                    float Speed = 5f;  //projectile speed
+                    float Speed = 7f;  //projectile speed
                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                     int damage = 10;  //projectile damage
                     int type = mod.ProjectileType("ProNut2");  //put your projectile
                     float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
-                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
-                    int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0f, 0);
-                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0f, 0);
+                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0, 0);
+                    int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0, 0);
+                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0, 0);
                     npc.ai[1] = 0;
+
+                    if(npc.life <= npc.lifeMax - (npc.lifeMax / 4))
+                    {
+                        float Speed3 = 2f;
+                        int damage3 = 25;
+                        int type3 = mod.ProjectileType("ProNut3");
+                        int num59 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed3) * -1), (float)((Math.Sin(rotation) * Speed3) * -1), type3, damage3, 0, 0);
+                    }
                 }
             }
+            
             if (npc.ai[0] % 300 == 3)  //Npc spawn rate
 
             {
                 NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("Doomlette"));
+            }
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Dust.NewDust(npc.position, npc.width, npc.height, 22);
+            Dust.NewDust(npc.position, npc.width, npc.height, 265);
+            if (npc.life <= 0)
+            {
+                Dust.NewDust(npc.position, npc.width, npc.height, 22);
+                Dust.NewDust(npc.position, npc.width, npc.height, 22);
+                Dust.NewDust(npc.position, npc.width, npc.height, 265);
+                Dust.NewDust(npc.position, npc.width, npc.height, 265);
             }
         }
     }

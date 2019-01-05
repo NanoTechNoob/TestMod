@@ -27,9 +27,8 @@ namespace TestMod.NPCs
             npc.value = 60f;
             npc.knockBackResist = .05f;
             npc.aiStyle = 3;
-            Main.npcFrameCount[npc.type] = 4;
-            aiType = 3;
             animationType = 3;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

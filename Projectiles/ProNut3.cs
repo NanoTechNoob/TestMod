@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace TestMod.Projectiles
 {
-    public class ProNut : ModProjectile
+    public class ProNut3 : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -16,9 +16,9 @@ namespace TestMod.Projectiles
             projectile.penetrate = 1;
             projectile.hostile = true;
             projectile.friendly = false;
-            projectile.tileCollide = true;
+            projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 200;
+            projectile.timeLeft = 800;
             projectile.light = 1.0f;
             projectile.knockBack = 0f;
         }
@@ -30,6 +30,14 @@ namespace TestMod.Projectiles
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 20);
                 projectile.localAI[0] = 1f;
             }
+
+            if (Main.rand.Next(4) == 0)
+			{
+				Dust dust = Dust.NewDustDirect(projectile.position, projectile.height, projectile.width, 265,
+					0, 0, 0, Scale: 1f);
+				dust.velocity += projectile.velocity * 0.5f;
+				dust.velocity *= 0.5f;
+			}
         }
     }
 }

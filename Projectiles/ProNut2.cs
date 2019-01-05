@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace TestMod.Projectiles
 {
-    public class ProNut : ModProjectile
+    public class ProNut2 : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -16,9 +16,9 @@ namespace TestMod.Projectiles
             projectile.penetrate = 1;
             projectile.hostile = true;
             projectile.friendly = false;
-            projectile.tileCollide = true;
+            projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 200;
+            projectile.timeLeft = 400;
             projectile.light = 1.0f;
             projectile.knockBack = 0f;
         }

@@ -50,6 +50,7 @@ namespace TestMod.NPCs
                 animationType = NPCID.GreenSlime;
                 Main.npcFrameCount[npc.type] = 2;
             }
+            banner = Item.NPCtoBanner(NPCID.GreenSlime);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

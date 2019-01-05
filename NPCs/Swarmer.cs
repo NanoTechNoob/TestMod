@@ -32,6 +32,7 @@ namespace TestMod.NPCs
                 aiType = NPCID.GreenSlime;
                 animationType = NPCID.GreenSlime;
                 Main.npcFrameCount[npc.type] = 2;
+                banner = Item.NPCtoBanner(NPCID.PurpleSlime);
             }
             else
             {
