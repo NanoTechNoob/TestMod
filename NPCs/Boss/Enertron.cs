@@ -18,7 +18,7 @@ namespace TestMod.NPCs.Boss
         }
         public override void SetDefaults()
         {
-            npc.lifeMax = 10000;   //boss life
+            npc.lifeMax = 2500;   //boss life
             npc.damage = 100;  //boss damage
             npc.defense = 10000;    //boss defense
             npc.knockBackResist = 0f;
@@ -55,34 +55,68 @@ namespace TestMod.NPCs.Boss
                 }
                 npc.netUpdate = true;
 
-            if(npc.life >= 1000)
+            if(npc.life >= npc.lifeMax / 5)
             {
                 npc.ai[1]++;
-                if (npc.ai[1] >= 12) //fire rate
+                if (npc.ai[1] == 15) //fire rate
                 {
-                    float Speed = 15f;  //projectile speed
+                    float Speed = 12f;  //projectile speed
                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                     int damage = 25;  //projectile damage
                     int type = mod.ProjectileType("TeslaBall");
                     float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                     int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0, 0);
+                    npc.life += -25;
+                }
+                else if (npc.ai[1] == 30)
+                {
+                    float Speed = 12f;  //projectile speed
+                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+                    int damage = 25;  //projectile damage
+                    int type = mod.ProjectileType("TeslaBall");
+                    float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
+                    int num55 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 25) * Speed) * -1), (float)((Math.Sin(rotation + 25) * Speed) * -1), type, damage, 0, 0);
+                    int num57 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -25) * Speed) * -1), (float)((Math.Sin(rotation - 25) * Speed) * -1), type, damage, 0, 0);
+                    npc.life += -25;
+                }
+                else if (npc.ai[1] == 45)
+                {
+                    float Speed = 12f;  //projectile speed
+                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+                    int damage = 25;  //projectile damage
+                    int type = mod.ProjectileType("TeslaBall");
+                    float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
+                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0, 0);
+                    int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0, 0);
+                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation - 50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0, 0);
+                    npc.life += -25;
+                }
+                else if (npc.ai[1] == 60)
+                {
+                    float Speed = 12f;  //projectile speed
+                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+                    int damage = 25;  //projectile damage
+                    int type = mod.ProjectileType("TeslaBall");
+                    float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
+                    int num55 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 25) * Speed) * -1), (float)((Math.Sin(rotation + 25) * Speed) * -1), type, damage, 0, 0);
+                    int num57 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -25) * Speed) * -1), (float)((Math.Sin(rotation - 25) * Speed) * -1), type, damage, 0, 0);
                     npc.ai[1] = 0;
-                  npc.life += -25;
+                    npc.life += -25;
                 }
             }
-            else if(npc.life <= 1000)
+            else if(npc.life <= npc.lifeMax / 5)
             {
                 npc.ai[1]++;
-                if (npc.ai[1] >= 3) //fire rate
+                if (npc.ai[1] >= 6) //fire rate
                 {
-                    float Speed = 15f;  //projectile speed
+                    float Speed = 10f;  //projectile speed
                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                     int damage = 10;  //projectile damage
                     int type = mod.ProjectileType("TeslaBall");
                     float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                     int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0, 0);
                     int num56 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + 50) * Speed) * -1), (float)((Math.Sin(rotation + 50) * Speed) * -1), type, damage, 0, 0);
-                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation - 50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0, 0);
+                    int num58 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation -50) * Speed) * -1), (float)((Math.Sin(rotation - 50) * Speed) * -1), type, damage, 0, 0);
                     npc.ai[1] = 0;
                 }
             }
