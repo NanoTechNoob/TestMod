@@ -4,11 +4,11 @@ using Terraria.ModLoader;
     
     namespace TestMod.Items
     {
-        public class Token : ModItem
+        public class ChocolateDonut : ModItem
         {
             public override void SetStaticDefaults()
             {
-				DisplayName.SetDefault("Token");
+				DisplayName.SetDefault("Chocolate Donut");
                 Tooltip.SetDefault("The inscription says: Token is redeemable for money.");
             }
 
@@ -29,7 +29,7 @@ using Terraria.ModLoader;
             {
                 if(!Main.dayTime)
                 {
-                    return !NPC.AnyNPCs(mod.NPCType("Enertron"));
+                    return !NPC.AnyNPCs(mod.NPCType("DoomNut"));
                 }
                 return false;
             }
@@ -38,8 +38,10 @@ using Terraria.ModLoader;
             {
                 if(!Main.dayTime)
                 {
-                    NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("Enertron"));
+                    NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("DoomNut"));
                     Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
+                    Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 2);
+                    player.AddBuff(26, 10800, false);
 
                     return true;
                 }
